@@ -1,0 +1,24 @@
+\documentclass[12pt, oneside]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\chapter}
+{\normalfont\huge\bfseries}{}{0pt}{\Huge}
+
+\title{Principia Humanitas}
+\author{Aru Bhoop}
+\date{}
+
+\begin{document}
+    \maketitle
+    \frontmatter
+    \tableofcontents
+    \mainmatter
+    \input{book/chapters/index}
+    \backmatter
+\end{document}

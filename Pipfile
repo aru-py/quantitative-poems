@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+openai = "*"
+
+[dev-packages]
+black = "*"
+
+[requires]
+python_version = "3.9"
+python_full_version = "3.9.4"
+
+[scripts]
+topics = 'python scripts/topics.py'
+equations = 'python scripts/equations.py'
+compile = "pdflatex -halt-on-error -output-directory $OUT_DIRECTORY $BOOK_INDEX_PATH"
+format = "bash -c \"black scripts/*.py\""
