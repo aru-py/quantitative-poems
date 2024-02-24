@@ -1,0 +1,56 @@
+{
+  "name": "create_equation",
+  "description": "Creates equation in Latex.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "This is the topic for the equation"
+      },
+      "equation": {
+        "type": "string",
+        "description": "Equation in Latex Formatting"
+      },
+      "variables": {
+        "type": "array",
+        "description": "List of variables used in equation",
+        "items": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Symbol for variable in LaTeX formatting"
+            },
+            "name": {
+              "type": "string",
+              "description": "1 - 2 word variable name",
+              "pattern": "[A-Za-z]*",
+              "minLength": 3,
+              "maxLength": 30
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of variable and how it's context in the equation and how it relates to surrounding variables (try not to repeat variable name)",
+              "pattern": "[A-Za-z,.()]*",
+              "minLength": 140,
+              "maxLength": 220
+            }
+          }
+        },
+        "minItems": 4,
+        "maxItems": 7
+      },
+      "explanation": {
+        "type": "string",
+        "description": "Detailed explanation of how variable relate to each other"
+      }
+    },
+    "required": [
+      "topic",
+      "equation",
+      "variables",
+      "explanation"
+    ]
+  }
+}

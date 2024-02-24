@@ -1,0 +1,18 @@
+Equation: C = \frac{K_i^n}{D + E}
+
+Variables:
+- $C$: *Curiosity*. A strong desire to know or learn something.
+- $K_i$: *Knowledge intake*. Represents the rate at which an individual is able to absorb and make sense of new information, which is why it's on the top.
+- $D$: *Distractions*. Sum of external factors that divert attention away from focusing on learning or exploring, which is why it's on the bottom of the fraction.
+- $E$: *Experience*. The accumulated knowledge or mastery over a subject, which could both enhance and deter curiosity through familiarity.
+
+
+Equation: R = \frac{1}{2}(C + A) \cdot \sqrt{E} \cdot \log(T+1) - D
+
+Variables:
+- $C$: *Romance*. This is a strong attraction between two people.
+- $C$: *Communication*. Quality and frequency of communication between partners. Good communication is essential for understanding each other's needs and resolving conflicts, thus it increases linearly with Romance.
+- $A$: *Attentiveness*. Indicates how attentive and responsive each partner is to the other's needs and emotions. High attentiveness can significantly boost the romance in a relationship as it shows care and understanding.
+- $E$: *Experiences*. This is the number of shared romantic experiences between partners. These experiences can range from dates, vacations, or any activity that is meaningful to both.
+- $T$: *Time*. Represents the duration of the relationship in years. As time increases, partners usually have more opportunities to bond and share experiences, which can logarithmically increase romance. However, this effect tends to plateau over time, hence the logarithmic function.
+- $D$: *Disagreements*. The number and intensity of disagreements or conflicts between partners. While some conflict can be healthy, excessive or unresolved disagreements tend to lower the romance level as they create emotional distance.

@@ -1,24 +1,82 @@
-\documentclass[12pt, oneside]{book}
+% configure output to be digital or print
+\newcommand{\setformat}[1]{
+    \ifnum#1=1
+    \documentclass[12pt, oneside]{book}
+    \usepackage{book/formats/digital}
+    \else
+    \documentclass[12pt, twoside, openany]{book}
+    \usepackage{book/formats/print}
+    \fi
+}
+
+% 1 = digital, 2 = print
+\setformat{2}
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 
+\usepackage{indentfirst}
 \usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{tocloft}
 
-\titleformat{\chapter}[display]
-{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titleformat{\chapter}
-{\normalfont\huge\bfseries}{}{0pt}{\Huge}
+% create index
+\makeindex
 
-\title{Principia Humanitas}
+% add hyperlinks
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+% change font to Garamond
+\usepackage{ebgaramond}
+
+% table of contents
+\setlength{\cftbeforechapskip}{6pt}
+\renewcommand{\cftchapfont}{\normalsize}
+\renewcommand{\cftchappagefont}{\normalfont}
+
+% command for formatting poems
+\newcommand{\poem}[3]{
+    \addcontentsline{toc}{chapter}{#1}
+    \index{#1}
+    \chapter*{#1} \textbf{Equation:} \[ #2 \]
+
+    \textbf{Where:}
+    \begin{itemize}
+        #3
+    \end{itemize}}
+
+% part titles
+\titleformat{\part}[block]{\normalfont\huge\bfseries\centering}{\thepart.}{1em}{}
+
+\title{Quantitative Poems}
 \author{Aru Bhoop}
-\date{}
 
 \begin{document}
-    \maketitle
-    \frontmatter
+    % cover page
+    \includepdf[pages=-]{book/cover.pdf}
+
+    % introduction
+    \vspace*{\fill}
+    \begin{center}
+        \textit{This book is a quantitative exploration of the human experience, expressed through equations written by artificial intelligence.}
+    \end{center}
+    \vspace{\fill}
+    \clearpage
+
+    % table of contents
     \tableofcontents
+    \frontmatter
     \mainmatter
-    \input{book/chapters/index}
+    \input{book/chapters}
+    \printindex
     \backmatter
 \end{document}
