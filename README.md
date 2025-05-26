@@ -8,7 +8,7 @@ Quantitative Poems is an exploration of the human condition through poetry, math
 
 **Purchase it**: [Amazon Link](<https://www.amazon.com/Quantitative-Poems-Machines-Perspective-Quantified-ebook/dp/B0CW1BT5HY/>) (Paperback coming soon!).
 
-<img src="docs/cover.png" width="400px">
+<img src="books/poem/assets/cover.png" width="400px">
 
 ## Generating the book
 
