@@ -3,6 +3,7 @@ config.py
 
 Set up configuration, logging, and checks.
 """
+
 import datetime
 import logging
 import subprocess
@@ -11,6 +12,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from icecream import install
+from inflect import engine
 
 install()
 
@@ -24,13 +26,15 @@ sys.tracebacklimit = 1
 if use_rich_traceback:
     install(show_locals=False)
 
-# Disable requests library logging
-logging.getLogger("requests").setLevel(logging.WARNING)
+# writer is a class in src/writers
+writer_name = "melody"
+# noinspection PyTypeChecker
+writer_plural = engine().plural(writer_name)
 
 # root directories
 root_dir = Path(__file__).parent.parent
-book_dir = root_dir / "book"
-out_dir = root_dir / "out"
+book_dir = root_dir / "books" / writer_name
+out_dir = root_dir / "out" / writer_name
 log_dir = root_dir / "logs"
 
 if not log_dir.exists():
@@ -51,7 +55,7 @@ logging.basicConfig(
             show_path=False,
             level=log_level,
         ),
-        logging.FileHandler(log_dir / log_filename)
+        logging.FileHandler(log_dir / log_filename),
     ],
 )
 

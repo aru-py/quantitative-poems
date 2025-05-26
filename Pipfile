@@ -14,8 +14,9 @@ aiofiles = "*"
 tenacity = "*"
 texsoup = "*"
 pylatexenc = "*"
-langchain = {extras = ["anthropic"], version = "*"}
+langchain = { extras = ["anthropic"], version = "*" }
 pydantic = "*"
+inflect = "*"
 
 [dev-packages]
 black = "*"
@@ -27,9 +28,3 @@ python_version = "3.12"
 
 [scripts]
 main = "pipenv run python src/main.py"
-# removes backup files created by latex
-remove_backups = "bash -c \"rm **/**/*.bak*\""
-# formats python files with `black`
-format_py = "bash -c \"black src/**.py\""
-# formats .tex files with `latexindent`
-format_tex = "bash -c \"latexindent -w book/index.tex book/chapters/*.tex > /dev/null\""

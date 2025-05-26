@@ -5,8 +5,8 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import cached_property
 from pathlib import Path
 
-from config import paths, tex_engine
-from utils import Writer
+from config import paths, tex_engine, writer_plural
+from writer import Writer
 
 
 class Book:
@@ -28,7 +28,7 @@ class Book:
         """
         Returns the path for the topic.
         """
-        return paths.content_dir / "poems" / f"{idx:03d}_{topic}.tex"
+        return paths.content_dir / writer_plural / f"{idx:03d}_{topic}.tex"
 
     def build(self, **kwargs) -> None:
         """
@@ -46,7 +46,9 @@ class Book:
 
         # check if path exists
         if not overwrite and outline_tex_path.exists():
-            logging.info(f"[yellow]Outline file {outline_tex_path} already exists. Skipping...[/yellow]")
+            logging.info(
+                f"[yellow]Outline file {outline_tex_path} already exists. Skipping...[/yellow]"
+            )
             return
 
         output = []
@@ -58,7 +60,7 @@ class Book:
             for topic in topics:
                 topic_idx += 1
                 page_path = self._path_for_topic(topic_idx, topic)
-                relative_path = page_path.relative_to(paths.book_dir).with_suffix('')
+                relative_path = page_path.relative_to(paths.book_dir).with_suffix("")
                 output.append(r"\input{%s}" % relative_path)
 
         # write the outline to the file
@@ -72,12 +74,15 @@ class Book:
         Builds all pages from outline.
         """
         outline = self.outline
-        topics = enumerate([topic for chapter in outline.values() for topic in chapter], 1)
+        topics = enumerate(
+            [topic for chapter in outline.values() for topic in chapter], 1
+        )
 
         if parallel:
             with ThreadPoolExecutor(max_workers=5) as executor:
-                executor.map(lambda args: self.build_page(*args, overwrite=overwrite),
-                             topics)
+                executor.map(
+                    lambda args: self.build_page(*args, overwrite=overwrite), topics
+                )
                 return None
 
         for idx, topic in topics:
@@ -94,17 +99,24 @@ class Book:
 
         if not overwrite and output_path.exists():
             logging.info(
-                f"[{idx}] [gray]Page for [blue italic]{topic}[/blue italic] already exists. Skipping...[/gray]")
+                f"[{idx}] [gray]Page for [blue italic]{topic}[/blue italic] already exists. Skipping...[/gray]"
+            )
             return
 
-        logging.info(f"[{idx}] [yellow]Writing page for [blue italic]{topic}[/blue italic]...[/yellow]")
+        logging.info(
+            f"[{idx}] [yellow]Writing page for [blue italic]{topic}[/blue italic]...[/yellow]"
+        )
         content = self.writer.write(topic)
-        logging.info(f"[{idx}] [green]Finished page for [blue italic]{topic}[/blue italic].[/green]")
+        logging.info(
+            f"[{idx}] [green]Finished page for [blue italic]{topic}[/blue italic].[/green]"
+        )
         with open(output_path, "w") as f:
             f.write(content)
 
     @staticmethod
-    def compile(draft_mode=False, halt_on_error=True, quiet=False) -> subprocess.CompletedProcess:
+    def compile(
+        draft_mode=False, halt_on_error=True, quiet=False
+    ) -> subprocess.CompletedProcess:
         """
         Compiles the book using the specified TeX engine.
         """
@@ -121,7 +133,13 @@ class Book:
         out_dir = paths.out_dir
         book_dir = paths.book_dir
         index_tex = paths.index_tex
-        cmd_args = [tex_engine, *flags, "-output-directory", str(out_dir), str(index_tex)]
+        cmd_args = [
+            tex_engine,
+            *flags,
+            "-output-directory",
+            str(out_dir),
+            str(index_tex),
+        ]
         return subprocess.run(cmd_args, check=True, cwd=book_dir)
 
     @staticmethod

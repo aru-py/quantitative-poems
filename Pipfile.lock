@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2c9ee7f6a3b5c03beed57c350b810a320c7e43d55e6b568d3e728f5371fa3ace"
+            "sha256": "71913e784b09709cddd07759dc30ac4b4cfa6069c6546fd26d95d0a0257bd676"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -243,6 +243,15 @@
             "markers": "python_version >= '3.6'",
             "version": "==3.10"
         },
+        "inflect": {
+            "hashes": [
+                "sha256:2aea70e5e70c35d8350b8097396ec155ffd68def678c7ff97f51aa69c1d92344",
+                "sha256:faf19801c3742ed5a05a8ce388e0d8fe1a07f8d095c82201eb904f5d27ad571f"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.9'",
+            "version": "==7.5.0"
+        },
         "jiter": {
             "hashes": [
                 "sha256:023aa0204126fe5b87ccbcd75c8a0d0261b9abdbbf46d55e7ae9f8e22424eeb8",
@@ -417,6 +426,14 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==0.1.2"
+        },
+        "more-itertools": {
+            "hashes": [
+                "sha256:9fddd5403be01a94b204faadcff459ec3568cf110265d3c54323e1e866ad29d3",
+                "sha256:d43980384673cb07d2f7d2d918c616b30c659c089ee23953f601d6609c67510e"
+            ],
+            "markers": "python_version >= '3.9'",
+            "version": "==10.7.0"
         },
         "openai": {
             "hashes": [
@@ -960,6 +977,14 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==4.67.1"
+        },
+        "typeguard": {
+            "hashes": [
+                "sha256:77a78f11f09777aeae7fa08585f33b5f4ef0e7335af40005b0c422ed398ff48c",
+                "sha256:a6f1065813e32ef365bc3b3f503af8a96f9dd4e0033a02c28c4a4983de8c6c49"
+            ],
+            "markers": "python_version >= '3.9'",
+            "version": "==4.4.2"
         },
         "typing-extensions": {
             "hashes": [

@@ -56,41 +56,43 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
 
-
-
 \usepackage{amsmath, geometry, xcolor, enumitem}
+\usepackage{musixtex} % for musical notation
+\usepackage{harmony} % for chord symbols
 
-\definecolor{accent}{RGB}{139, 21, 56}
+\definecolor{accent}{HTML}{481AFF}
 
-% command for formatting poems
-\newcommand{\poem}[4]{
+% command for formatting individual notes
+\newcommand{\note}[2]{
+    \textbf{#1} (#2)
+}
+
+% command for formatting melodies
+\newcommand{\melody}[3]{
     \addcontentsline{toc}{chapter}{#1}
     \index{#1}
 
     \vspace*{.5em}
     {\raggedright\Huge\bfseries #1\par}
 
-    \begin{center}
-    \large
-    \[ #2 \]
-    \end{center}
-
     \vspace{1em}
 
-    % Clean section headers
-    {\large\bfseries\color{accent} Where:}
+    % Musical notation section
+    {\large\bfseries\color{accent} Melody:}
     \vspace{0.5em}
 
-    \begin{itemize}[leftmargin=2em, itemsep=1em]
-    #3
-    \end{itemize}
+    \begin{center}
+    \large
+    \texttt{#2}
+    \end{center}
 
     \vspace{1.5em}
 
+    % Clean section headers
     {\large\bfseries\color{accent} Explanation:}
     \vspace{0.5em}
 
-    #4
+    #3
 
     \clearpage
 }
@@ -101,14 +103,11 @@
 
 \titleformat{\part}[block]
 {\normalfont\huge\bfseries\centering}
-{\afterpage{\pagecolor{white}}\pagecolor[HTML]{8B1538}\color{white}\thepart.}
+{\afterpage{\pagecolor{white}}\pagecolor[HTML]{481AFF}\color{white}\thepart.}
 {.5em}
 {\color{white}}
 
-% customize titles
-%\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\huge}
-
-\title{Quantitative Poems}
+\title{Melodic Expressions}
 \author{Aru Bhoop}
 
 \begin{document}
@@ -116,12 +115,11 @@
     \includepdf[pages=-]{assets/cover.pdf}
     \frontmatter
 
-
     % introduction
     \cleardoublepage
     \vspace*{\fill}
     \begin{center}
-        \textit{This book is a quantitative exploration of the human experience, expressed through equations written by artificial intelligence.}
+        \textit{This book is a musical exploration of the human experience, expressed through melodies written by artificial intelligence.}
     \end{center}
     \vspace{\fill}
     \clearpage
