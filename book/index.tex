@@ -1,19 +1,20 @@
 % configure output to be digital or print
 \newcommand{\setformat}[1]{
-    \ifnum#1=1
-    \documentclass[12pt, oneside]{book}
-    \usepackage{book/formats/digital}
+    \ifnum
+        #1=1
+        \documentclass[10pt, oneside]{book}
+        \usepackage{formats/digital}
     \else
-    \documentclass[12pt, twoside, openany]{book}
-    \usepackage{book/formats/print}
+        \documentclass[10pt, twoside, openany]{book}
+        \usepackage{formats/print}
     \fi
 }
 
 % 1 = digital, 2 = print
-\setformat{2}
+%! suppress = FileNotFound
+\setformat{1}
 
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
 
 \usepackage{indentfirst}
 \usepackage{titlesec}
@@ -38,33 +39,86 @@
 % change font to Garamond
 \usepackage{ebgaramond}
 
+\usepackage{enumitem}
+\setlist[itemize]{
+    topsep=6pt,
+    partopsep=0pt,
+    itemsep=6pt,
+    parsep=0pt,
+    leftmargin=12pt
+}
+
 % table of contents
 \setlength{\cftbeforechapskip}{6pt}
 \renewcommand{\cftchapfont}{\normalsize}
 \renewcommand{\cftchappagefont}{\normalfont}
 
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+
+
+\usepackage{amsmath, geometry, xcolor, enumitem}
+
+\definecolor{accent}{RGB}{139, 21, 56}
+
 % command for formatting poems
-\newcommand{\poem}[3]{
+\newcommand{\poem}[4]{
     \addcontentsline{toc}{chapter}{#1}
     \index{#1}
-    \chapter*{#1} \textbf{Equation:} \[ #2 \]
 
-    \textbf{Where:}
-    \begin{itemize}
-        #3
-    \end{itemize}}
+    \vspace*{.5em}
+    {\raggedright\Huge\bfseries #1\par}
 
-% part titles
-\titleformat{\part}[block]{\normalfont\huge\bfseries\centering}{\thepart.}{1em}{}
+    \begin{center}
+    \large
+    \[ #2 \]
+    \end{center}
+
+    \vspace{1em}
+
+    % Clean section headers
+    {\large\bfseries\color{accent} Where:}
+    \vspace{0.5em}
+
+    \begin{itemize}[leftmargin=2em, itemsep=1em]
+    #3
+    \end{itemize}
+
+    \vspace{1.5em}
+
+    {\large\bfseries\color{accent} Explanation:}
+    \vspace{0.5em}
+
+    #4
+
+    \clearpage
+}
+
+\usepackage{xcolor}
+\usepackage{afterpage}
+\usepackage{color}
+
+\titleformat{\part}[block]
+{\normalfont\huge\bfseries\centering}
+{\afterpage{\pagecolor{white}}\pagecolor[HTML]{8B1538}\color{white}\thepart.}
+{.5em}
+{\color{white}}
+
+% customize titles
+%\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\huge}
 
 \title{Quantitative Poems}
 \author{Aru Bhoop}
 
 \begin{document}
     % cover page
-    \includepdf[pages=-]{book/cover.pdf}
+    \includepdf[pages=-]{assets/cover.pdf}
+    \frontmatter
+
 
     % introduction
+    \cleardoublepage
     \vspace*{\fill}
     \begin{center}
         \textit{This book is a quantitative exploration of the human experience, expressed through equations written by artificial intelligence.}
@@ -74,9 +128,8 @@
 
     % table of contents
     \tableofcontents
-    \frontmatter
     \mainmatter
-    \input{book/chapters}
-    \printindex
+    \input{outline}
     \backmatter
+    \printindex
 \end{document}

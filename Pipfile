@@ -4,14 +4,18 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+icecream = "*"
+rich = "*"
+jsonschema = "*"
+fire = "*"
 openai = "*"
+anthropic = "*"
 aiofiles = "*"
-termcolor = "*"
 tenacity = "*"
-install = "*"
 texsoup = "*"
 pylatexenc = "*"
-jsonschema = "*"
+langchain = {extras = ["anthropic"], version = "*"}
+pydantic = "*"
 
 [dev-packages]
 black = "*"
@@ -19,29 +23,13 @@ jupyter = "*"
 ipykernel = "*"
 
 [requires]
-python_version = "3.9"
-python_full_version = "3.9.4"
+python_version = "3.12"
 
 [scripts]
-## Python
-# creates .tex with book sections and layout
-run_make_layout = 'python src/code/make_layout.py'
-# generates .tex files with equations (poems)
-run_equations = 'python src/code/equations.py'
-## Latex
-# creates index for book
-make_index = "makeindex out/index.idx"
-# runs latex in draft mode (does not generate output)
-gen_draft = "$TEX_ENGINE -draftmode -halt-on-error -output-directory $OUT $SRC"
-# compiles the book once
-gen_compiled = "$TEX_ENGINE -halt-on-error -output-directory $OUT $SRC"
-# compiles book twice with index
-gen_book = "bash -c \"pipenv run gen_compiled && pipenv run make_index && pipenv run gen_compiled\""
-## Other
+main = "pipenv run python src/main.py"
 # removes backup files created by latex
 remove_backups = "bash -c \"rm **/**/*.bak*\""
 # formats python files with `black`
 format_py = "bash -c \"black src/**.py\""
 # formats .tex files with `latexindent`
 format_tex = "bash -c \"latexindent -w book/index.tex book/chapters/*.tex > /dev/null\""
-

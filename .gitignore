@@ -1,5 +1,6 @@
 .venv
 .idea
+.envs/
 
 ### TeX template
 ## Core latex/pdflatex auxiliary files:
